@@ -1,5 +1,15 @@
 import store from "./js/Store.js";
 
+const TabType = {
+  KEYWORD: "KEYWORD",
+  HISTORY: "HISTORY",
+};
+
+const TabLabel = {
+  [TabType.KEYWORD]: "추천 검색어",
+  [TabType.HISTORY]: "최근 검색어",
+};
+
 class App extends React.Component {
 
   constructor() {
@@ -9,13 +19,14 @@ class App extends React.Component {
       searchKeyword: "",
       searchResult: [],
       submitted: false,
+      selectedTab: TabType.KEYWORD,
     };
   }
 
   handleReset() {
     this.setState(
       () => {
-        return { searchKeyword: "",  submitted: false };
+        return { searchKeyword: "", submitted: false };
       },
       () => {
         console.log("onReset", this.state.searchKeyword);
@@ -46,7 +57,7 @@ class App extends React.Component {
   }
 
   render() {
-    
+
     const searchForm = (
       <form
         onSubmit={event => this.handleSubmit(event)}
@@ -76,6 +87,24 @@ class App extends React.Component {
         </ul> : <div className="empty-box">검색 결과가 없습니다</div>
     )
 
+    const tabs = (
+      <>
+        <ul className="tabs">
+          {Object.values(TabType).map(tabType => (
+            <li
+              onClick={() => this.setState({ selectedTab: tabType })}
+              className={this.state.selectedTab === tabType ? "active" : ""}
+              key={tabType}
+            >
+              {TabLabel[tabType]}
+            </li>
+          ))}
+        </ul>
+        {this.state.selectedTab === TabType.KEYWORD && <>추천</>}
+        {this.state.selectedTab === TabType.HISTORY && <>최근</>}
+      </>
+    )
+
     return (
       <>
         <header>
@@ -84,7 +113,7 @@ class App extends React.Component {
         <div className="container">
           {searchForm}
           <div className="content">
-            {this.state.submitted && searchResult}
+            {this.state.submitted ? searchResult : tabs}
           </div>
         </div>
       </>
