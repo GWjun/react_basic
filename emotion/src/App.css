@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Poppins&family=Yeon+Sung&display=swap');
+
+body{
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;  /* 가로축 가운데 */
+  align-items: center;  /* 세로축 가운데 */
+  font-family: 'Nanum Pen Script', cursive;
+  min-height: 100vh;
+  margin: 0px;
+}
+
+@media (min-width: 650px) {
+  .App{
+    width: 640px;
+  }
+}
+
+@media (max-width: 650px) {
+  .App{
+    width: 90vw;
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgb(198, 192, 192) 0px 7px 29px 0px;
+}
+.App {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* MyButton */
+.MyButton {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  
+  padding: 10px 20px 10px 20px;
+  font-size: 18px;
+  white-space: nowrap; /* 잘려서 2출되지 않도록 */
+  font-family: 'Nanum Pen Script', cursive;
+}
+
+.MyButton_positive {
+  background-color: #80ed7f;
+  color: white;
+}
+
+.MyButton_negative {
+  background-color: #e86363;
+  color: white;
+}
+
+/* header */
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;  /* 가로축으로 설정 */
+  align-items: center;
+  border-bottom: 2px solid #e2e2e2;
+}
+
+header div {
+  display: flex;
+}
+
+header .head_text {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .head_btn_left {
+  width: 25%;
+  justify-content: start;
+}
+
+header .head_btn_right {
+  width: 25%;
+  justify-content: end;
+}
+
+header button {
+  font-family: 'Nanum Pen Script', cursive;
+}
