@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -23,9 +23,9 @@ const reducer = (state, action) => {
       break;
     }
     case "edit": {
-      newState = state.map((it) => {
-        it.id === action.data.id ? action.data : it; // spread
-      });
+      newState = state.map(
+        (it) => (it.id === action.data.id ? { ...action.data } : it) // spread, 객체 반환 하므로 ()로 감싸기
+      );
       break;
     }
     default:
@@ -33,19 +33,51 @@ const reducer = (state, action) => {
   }
 };
 
-const StateContext = React.createContext(); // export
-const DispatchContext = React.createContext();
+export const StateContext = React.createContext(); // export
+export const DispatchContext = React.createContext();
+
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: "안녕",
+    date: 1704432171506,
+  },
+  {
+    id: 2,
+    emotion: 1,
+    content: "하시",
+    date: 1704432171510,
+  },
+  {
+    id: 3,
+    emotion: 1,
+    content: "렵니까",
+    date: 1715452181426,
+  },
+];
 
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
   const dataId = useRef(0);
+
+  const onInit = () => {
+    dispatch({
+      type: "init",
+      data: dummyData,
+    });
+  };
+
+  useEffect(() => {
+    onInit();
+  }, []);
 
   const onCreate = (date, content, emotion) => {
     dispatch({
       type: "create",
       data: {
         id: dataId.current,
-        data: new Date(date).getTime(),
+        date: new Date(date).getTime(),
         content,
         emotion,
       },
@@ -65,7 +97,7 @@ function App() {
       type: "edit",
       data: {
         id: targetId,
-        data: new Date(date).getTime(),
+        date: new Date(date).getTime(),
         content: content,
         emotion: emotion,
       },
