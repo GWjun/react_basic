@@ -29,8 +29,9 @@ const reducer = (state, action) => {
       break;
     }
     default:
-      return newState;
+      return state;
   }
+  return newState;
 };
 
 export const StateContext = React.createContext(); // export
