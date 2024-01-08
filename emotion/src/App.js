@@ -45,7 +45,7 @@ const dummyData = [
   },
   {
     id: 2,
-    emotion: 1,
+    emotion: 4,
     content: "하시",
     date: 1704432171510,
   },

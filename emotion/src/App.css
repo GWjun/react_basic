@@ -44,7 +44,7 @@ body{
 }
 
 .MyButton_positive {
-  background-color: #80ed7f;
+  background-color: #95ea9c;
   color: white;
 }
 
@@ -84,4 +84,108 @@ header .head_btn_right {
 
 header button {
   font-family: 'Nanum Pen Script', cursive;
+}
+
+/* DiaryList */
+.DiaryList .menu {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between
+}
+
+.DiaryList .menu .right_col {
+  flex-grow: 1; /* 남은 가 힐딩 */
+}
+
+.DiaryList .menu .right_col button {
+  width: 100%;
+}
+
+.DiaryList .ControlMenu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 10px 20px 10px 20px;
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 18px;
+}
+
+/* DiaryItem */
+.DiaryItem {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.DiaryItem .emotion_img {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center
+}
+.DiaryItem .emotion_img_1 {
+  background-color: #64c964;
+}
+.DiaryItem .emotion_img_2 {
+  background-color: #9dd772;
+}
+.DiaryItem .emotion_img_3 {
+  background-color: #fdce17;
+}
+.DiaryItem .emotion_img_4 {
+  background-color: #fd8446;
+}
+.DiaryItem .emotion_img_5 {
+  background-color: #fd565f;
+}
+.DiaryItem .emotion_img img{
+  width: 50%;
+}
+
+.DiaryItem .info {
+  cursor: pointer;
+  margin-left: 20px;
+  flex-grow: 1;
+}
+.DiaryItem .info .diary_date {
+  font-weight: bold;
+  font-size: 23px;
+  margin-bottom: 5px;
+}
+.DiaryItem .info .diary_content {
+  font-size: 18px;
+}
+
+.DiaryItem .btn {
+  min-width: 70px;
+}
+
+/* DiaryEditor */
+.DiaryEditor {
+
+}
+
+.DiaryEditor section {
+  margin-bottom: 40px;
+}
+
+.DiaryEditor h4 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.DiaryEditor .input_date {
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 10px 20px 10px 20px;
+  cursor: pointer;
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 20px;
 }
