@@ -25,10 +25,10 @@ const DiaryItem = ({ id, emotion, content, date }) => {
         <div className="diary_date">
           {new Date(parseInt(date)).toLocaleDateString()}
         </div>
-        <div className="diary_content">{content.slice(0, 25)}</div>
+        <div className="diary_content">{content.slice(0, 130)}</div>
       </div>
       <div onClick={goEdit} className="btn">
-        <MyButton text={"수정하기"} onClick={() => console.log("수정하기")} />
+        <MyButton text={"수정하기"} />
       </div>
     </div>
   );

@@ -114,7 +114,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
               <Route path="/Edit/:id" element={<Edit />} />
-              <Route path="/Diary" element={<Diary />} />
+              <Route path="/Diary/:id" element={<Diary />} />
             </Routes>
           </div>
         </BrowserRouter>

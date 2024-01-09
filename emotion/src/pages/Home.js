@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { StateContext } from "../App.js"; // default 아니므로
 
 import MyHeader from "../components/MyHeader.js";
 import MyButton from "../components/MyButton.js";
 import DiaryList from "../components/DiaryList.js";
+import { StateContext } from "../App.js"; // default 아니므로
 
 const Home = () => {
   const diaryList = useContext(StateContext); // 원본 데이터
