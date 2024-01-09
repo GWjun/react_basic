@@ -60,7 +60,7 @@ const dummyData = [
 
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
-  const dataId = useRef(0);
+  const dataId = useRef(4);
 
   const onInit = () => {
     dispatch({
@@ -113,7 +113,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
-              <Route path="/Edit" element={<Edit />} />
+              <Route path="/Edit/:id" element={<Edit />} />
               <Route path="/Diary" element={<Diary />} />
             </Routes>
           </div>
