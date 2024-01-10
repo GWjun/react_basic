@@ -24,6 +24,15 @@ const Edit = () => {
     }
   }, [id, diaryList, navigate]);
 
+  useEffect(() => {
+    if (originData) {
+      const titleElement = document.getElementsByTagName("title")[0];
+      titleElement.innerHTML = `나만의 일기장 - ${new Date(
+        parseInt(originData.date)
+      ).toLocaleDateString()} 일기`;
+    }
+  }, [originData]);
+
   return (
     <div>
       <h1>

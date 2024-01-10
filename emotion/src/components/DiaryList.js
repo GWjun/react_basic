@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyButton from "./MyButton";
 import DiaryItem from "./DiaryItem";
@@ -14,7 +14,7 @@ const emotionOption = [
   { value: "good", name: "좋은 것 만" },
 ];
 
-const ControlMenu = ({ data, setData, optionList }) => {
+const ControlMenu = React.memo(({ data, setData, optionList }) => {
   return (
     <select
       className="ControlMenu"
@@ -30,7 +30,7 @@ const ControlMenu = ({ data, setData, optionList }) => {
       ))}
     </select>
   );
-};
+});
 
 const DiaryList = ({ diaryList = [] }) => {
   // props 비구조화 할당으로 바로 가져오기

@@ -1,8 +1,10 @@
+import React from "react";
+
 const EmotionItem = ({
   emotion_id,
   emotion_img,
   emotion_descript,
-  onClick,
+  onClick, // useState의 함수나 useCallback 함수가 아니라면 memo 적용 X
   isSelected,
 }) => {
   return (
@@ -18,4 +20,4 @@ const EmotionItem = ({
   );
 };
 
-export default EmotionItem;
+export default React.memo(EmotionItem);

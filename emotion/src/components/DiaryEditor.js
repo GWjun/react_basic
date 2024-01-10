@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import MyHeader from "./MyHeader";
@@ -19,8 +19,9 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const [emotion, setEmotion] = useState(3);
   const [date, setDate] = useState(getKrDate(new Date()));
   const navigate = useNavigate();
-  const { onCreate, onEdit } = useContext(DispatchContext);
+  const { onCreate, onEdit, onRemove } = useContext(DispatchContext);
 
+  const handleEmotion = useCallback((emotion) => setEmotion(emotion), []);
   const handleSubmit = () => {
     if (content.length < 5) {
       alert("일기는 5자 이상 써주세요!");
@@ -32,6 +33,13 @@ const DiaryEditor = ({ isEdit, originData }) => {
       : onCreate(date, content, emotion);
 
     navigate("/", { replace: true });
+  };
+
+  const handleRemove = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      onRemove(originData.id);
+      navigate("/", { replace: true });
+    }
   };
 
   useEffect(() => {
@@ -48,6 +56,15 @@ const DiaryEditor = ({ isEdit, originData }) => {
         headtext={isEdit ? "일기 수정하기" : "새로운 일기 쓰기"}
         leftchild={
           <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
+        }
+        rightchild={
+          isEdit && (
+            <MyButton
+              text={"삭제하기"}
+              type="negative"
+              onClick={handleRemove}
+            />
+          )
         }
       />
 
@@ -68,7 +85,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
             <EmotionItem
               key={it.emotion_id}
               {...it}
-              onClick={(emotion) => setEmotion(emotion)}
+              onClick={handleEmotion}
               isSelected={it.emotion_id === emotion}
             />
           ))}
@@ -88,11 +105,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
       <section>
         <div className="control_box">
           <MyButton text={"취소하기"} onClick={() => navigate(-1)} />
-          <MyButton
-            type="positive"
-            text={"저장하기"}
-            onClick={() => handleSubmit()}
-          />
+          <MyButton type="positive" text={"저장하기"} onClick={handleSubmit} />
         </div>
       </section>
     </div>

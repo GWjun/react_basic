@@ -13,6 +13,15 @@ const Diary = () => {
   const [originData, setOriginData] = useState();
 
   useEffect(() => {
+    if (originData) {
+      const titleElement = document.getElementsByTagName("title")[0];
+      titleElement.innerHTML = `나만의 일기장 - ${new Date(
+        parseInt(originData.date)
+      ).toLocaleDateString()} 일기`;
+    }
+  }, [originData]);
+
+  useEffect(() => {
     if (diaryList.length >= 1) {
       const targetDiary = diaryList.find(
         (it) => parseInt(it.id) === parseInt(id)

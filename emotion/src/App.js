@@ -31,46 +31,29 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+
+  localStorage.setItem("diary_data", JSON.stringify(newState));
   return newState;
 };
 
 export const StateContext = React.createContext(); // export
 export const DispatchContext = React.createContext();
 
-const dummyData = [
-  {
-    id: 1,
-    emotion: 1,
-    content: "안녕",
-    date: 1704432171506,
-  },
-  {
-    id: 2,
-    emotion: 4,
-    content: "하시",
-    date: 1704432171510,
-  },
-  {
-    id: 3,
-    emotion: 1,
-    content: "렵니까",
-    date: 1715452181426,
-  },
-];
-
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
-  const dataId = useRef(4);
-
-  const onInit = () => {
-    dispatch({
-      type: "init",
-      data: dummyData,
-    });
-  };
+  const dataId = useRef(0);
 
   useEffect(() => {
-    onInit();
+    const localData = localStorage.getItem("diary_data");
+    if (localData) {
+      const diaryList = JSON.parse(localData).sort(
+        (a, b) => parseInt(b.id) - parseInt(a.id)
+      );
+      if (diaryList.length > 0) {
+        dataId.current = parseInt(diaryList[0].id) + 1;
+        dispatch({ type: "init", data: diaryList });
+      }
+    }
   }, []);
 
   const onCreate = (date, content, emotion) => {
